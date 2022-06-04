@@ -102,4 +102,16 @@ class Package extends CI_Model
 		$this->db->where('id', $id);
 		$this->db->delete($this->table);
 	}
+
+
+
+
+
+
+	// -================== v ==================-
+	public function get_data_packages()
+	{
+		$query = "SELECT * FROM packages ORDER BY packages.name ASC";
+		return $this->db->query($query)->result_array();
+	}
 }

@@ -68,7 +68,13 @@ class StudentController extends CI_Controller
 			);
 
 			$insertStudent = $this->model_data->add('students', $additional_data);
-			redirect('/admin/student');
+			if ($insertStudent) {
+				$this->session->set_flashdata('message', 'Sukses terinput');
+				redirect('/admin/student');
+			} else {
+				$this->session->set_flashdata('message', 'Gagal terinput');
+				redirect('/admin/student');
+			}
 		} else {
 			$this->session->set_flashdata('message', 'Email sudah terdaftar');
 			redirect('/admin/student');

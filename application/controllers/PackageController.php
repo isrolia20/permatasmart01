@@ -15,44 +15,29 @@ class PackageController extends CI_Controller
 
 	public function index()
 	{
+		$data['title'] = "Paket";
+		$data['data_paket'] = $this->model_data->get_data_packages();
 		$data['content'] = 'admin/pages/_package';
 		$this->load->view('admin/layouts/master', $data);
 	}
 
-	function get_data_user()
-	{
-		$list = $this->model_data->get_datatables();
-		$data = array();
-		$no = $_POST['start'];
-		foreach ($list as $field) {
-			$no++;
-			$row = array();
-			$row[] = $no;
-			// $row[] = $field->id;
-			$row[] = $field->name;
-			$row[] = $field->price;
-			$row[] = $field->description;
-			$row[] = $field->duration;
-			$row[] = $field->level;
-			$row[] = '<td><button class="btn btn-primary btn-class" onclick="updateList(' . "'" . $field->id . "'" . ')"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-danger btn-class" onclick="deleteList(' . "'" . $field->id . "'" . ')"><i class="fa fa-trash"></i></button></td>';
+	// function get_data_user()
+	// {
+	// 	$data['title'] = "Paket";
+	// 	$data['data_paket'] = $this->model_data->get_data_packages();
+	// 	// $data['content'] = 'admin/pages/_package';
+	// 	$this->load->view('admin/layouts/header');
+	// 	$this->load->view('admin/layouts/sidebar');
+	// 	$this->load->view('admin/pages/_package', $data);
+	// 	$this->load->view('admin/layouts/footer');
+	// }
 
-			$data[] = $row;
-		}
-
-		$output = array(
-			"draw" => $_POST['draw'],
-			"recordsTotal" => $this->model_data->count_all(),
-			"recordsFiltered" => $this->model_data->count_filtered(),
-			"data" => $data,
-		);
-		//output dalam format JSON
-		echo json_encode($output);
-	}
 	public function add()
 	{
 		$admin_id = $this->session->userdata('admin_id');
-		$this->_validate();
+		// var_dump($admin_id);
+		// die;
+		// $this->_validate();
 		$data = array(
 			'id' => $this->input->post('id'),
 			'admin_id' => $admin_id,
@@ -64,31 +49,56 @@ class PackageController extends CI_Controller
 			'level' => $this->input->post('level'),
 		);
 		$insert = $this->model_data->add($data);
-		echo json_encode(array("status" => TRUE));
+		if ($insert) {
+			$this->session->set_flashdata('message', 'Sukses terinput');
+			redirect('/admin/package');
+		} else {
+			$this->session->set_flashdata('message', 'Gagal terinput');
+			redirect('/admin/package');
+		}
+
+		// echo json_encode(array("status" => TRUE));
 	}
-	public function get_id($id)
+	// public function get_id($id)
+	// {
+	// 	$data = $this->model_data->get_id($id);
+	// 	echo json_encode($data);
+	// }
+	public function update()
 	{
-		$data = $this->model_data->get_id($id);
-		echo json_encode($data);
-	}
-	public function update($id)
-	{
-		$this->_validate();
+		$id = $this->input->post('id');
+		$admin_id = $this->session->userdata('admin_id');
+		// $this->_validate();
 		$data = array(
 			'name' => $this->input->post('name'),
+			'admin_id' => $admin_id,
 			'slug' => url_title($this->input->post('name'), 'dash', true),
 			'price' => $this->input->post('price'),
 			'description' => $this->input->post('description'),
 			'duration' => $this->input->post('duration'),
 			'level' => $this->input->post('level'),
 		);
-		$this->model_data->update(array('id' => $id), $data);
-		echo json_encode(array("status" => TRUE));
+		$update = $this->model_data->update(array('id' => $id), $data);
+		if ($update) {
+			$this->session->set_flashdata('message', 'Sukses terupdate');
+			redirect('/admin/package');
+		} else {
+			$this->session->set_flashdata('message', 'Gagal terupdate');
+			redirect('/admin/package');
+		}
+		// echo json_encode(array("status" => TRUE));
 	}
-	public function delete($id)
+	public function delete($id = 0)
 	{
-		$this->model_data->delete($id);
-		echo json_encode(array("status" => TRUE));
+		$id = $this->input->post('id');
+		$delete = $this->model_data->delete($id);
+		if ($delete) {
+			$this->session->set_flashdata('message', 'Sukses terhapus');
+			redirect('/admin/package');
+		} else {
+			$this->session->set_flashdata('message', 'Gagal terhapus');
+			redirect('/admin/package');
+		}
 	}
 
 	private function _validate()
