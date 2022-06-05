@@ -64,6 +64,7 @@ class PackageController extends CI_Controller
 	// 	$data = $this->model_data->get_id($id);
 	// 	echo json_encode($data);
 	// }
+
 	public function update()
 	{
 		$id = $this->input->post('id');

@@ -11,6 +11,7 @@
 						<div class="card-header-action">
 							<button class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah Data</button>
 						</div>
+						<?= $this->session->flashdata('message') ?>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -18,12 +19,12 @@
 								<thead>
 									<tr>
 										<th scope="col">#</th>
-										<th scope="col">Name</th>
-										<th scope="col">Price</th>
-										<th scope="col">Description</th>
-										<th scope="col">Duration</th>
+										<th scope="col">Nama</th>
+										<th scope="col">Harga</th>
+										<th scope="col">Deskripsi</th>
+										<th scope="col">Durasi</th>
 										<th scope="col">Level</th>
-										<th scope="col">Action</th>
+										<th scope="col">Aksi</th>
 									</tr>
 								</thead>
 								<tbody class="table-content">
@@ -76,7 +77,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3 class="modal-title">Modal title</h3>
+				<h3 class="modal-title">Modal Paket</h3>
 			</div>
 			<form method="POST" action="<?= base_url('PackageController/add'); ?>" enctype="multipart/form-data">
 				<div class="modal-body">
@@ -86,22 +87,22 @@
 						<span class="help-block text-danger text-capitalize"></span>
 					</div>
 					<div class="form-group">
-						<label for="">Name</label>
+						<label for="">Nama</label>
 						<input type="text" class="form-control" id="name" name="name">
 						<span class="help-block text-danger text-capitalize"></span>
 					</div>
 					<div class="form-group">
-						<label for="">Price</label>
+						<label for="">Harga</label>
 						<input type="text" class="form-control" id="price" name="price">
 						<span class="help-block text-danger text-capitalize"></span>
 					</div>
 					<div class="form-group">
-						<label for="">Description</label>
+						<label for="">Dekripsi</label>
 						<input type="text" class="form-control" id="description" name="description">
 						<span class="help-block text-danger text-capitalize"></span>
 					</div>
 					<div class="form-group">
-						<label for="">Duration</label>
+						<label for="">Durasi</label>
 						<input type="text" class="form-control" id="duration" name="duration">
 						<span class="help-block text-danger text-capitalize"></span>
 					</div>
@@ -135,7 +136,7 @@ foreach ($data_paket as $dpk) : ?>
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3 class="modal-title">Modal title</h3>
+					<h3 class="modal-title">Edit Paket</h3>
 				</div>
 				<form method="POST" action="<?= base_url('PackageController/update'); ?>" enctype="multipart/form-data">
 					<div class="modal-body">
@@ -145,22 +146,22 @@ foreach ($data_paket as $dpk) : ?>
 							<span class="help-block text-danger text-capitalize"></span>
 						</div>
 						<div class="form-group">
-							<label for="">Name</label>
+							<label for="">Nama</label>
 							<input type="text" class="form-control" value="<?= $dpk['name'] ?>" name="name">
 							<span class="help-block text-danger text-capitalize"></span>
 						</div>
 						<div class="form-group">
-							<label for="">Price</label>
+							<label for="">Harga</label>
 							<input type="text" class="form-control" value="<?= $dpk['price'] ?>" name="price">
 							<span class="help-block text-danger text-capitalize"></span>
 						</div>
 						<div class="form-group">
-							<label for="">Description</label>
+							<label for="">Deskripsi</label>
 							<input type="text" class="form-control" value="<?= $dpk['description']; ?>" name="description">
 							<span class="help-block text-danger text-capitalize"></span>
 						</div>
 						<div class="form-group">
-							<label for="">Duration</label>
+							<label for="">Durasi</label>
 							<input type="text" class="form-control" value="<?= $dpk['duration'] ?>" name="duration">
 							<span class="help-block text-danger text-capitalize"></span>
 						</div>

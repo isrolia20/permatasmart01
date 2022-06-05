@@ -27,7 +27,7 @@
 						<div class="row">
 							<div class="col-md-6 form-group">
 								<label for="">Nama Lengkap</label>
-								<input type="text" name="name" class="form-control" id="name" placeholder="" required>
+								<input type="text" name="name" class="form-control" id="name" value="<?= $this->session->userdata("name"); ?>">
 							</div>
 							<div class="col-md-6 form-group mt-3 mt-md-0">
 								<label for="">Alamat Lengkap</label>
@@ -38,10 +38,12 @@
 							<label for="">Kelas</label>
 							<select name="package_id" id="package_id" class="form-control" style="font-size: 1.3rem;">
 								<option value="" selected>Pilih Kelas</option>
-								<?php foreach ($class as $row) {
+								<?php foreach ($class as $row) :
 								?>
-									<option data-price="<?= $row->price; ?>" value="<?= $row->id; ?>"><?= $row->name; ?> ----- <?= $row->price; ?></option>
-								<?php } ?>
+									<?php if ($row->level == $this->session->userdata('level')) : ?>
+										<option data-price="<?= $row->price; ?>" value="<?= $row->id; ?>"><?= $row->name; ?> ----- <?= $row->price; ?></option>
+									<?php endif; ?>
+								<?php endforeach; ?>
 							</select>
 						</div>
 						<div class="mt-5 text-end">

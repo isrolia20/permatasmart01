@@ -149,4 +149,27 @@ class Transaction extends CI_Model
 		$query = $this->db->get();
 		return $query->row();
 	}
+
+
+
+
+
+
+	// -================== v ==================-
+	public function get_data_transaction()
+	{
+		$this->db->select('*,tutors.name AS tutor ,transactions.id AS transaction_id, students.name AS student_name, packages.name AS package_name, students.id AS student_id, packages.id AS package_id');
+		$this->db->from($this->table);
+		$this->db->join('tutors', 'tutors.id = tutor_id', 'left');
+		$this->db->join('students', 'students.id = transactions.student_id');
+		$this->db->join('packages', 'packages.id = transactions.package_id');
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+	// -================== v ==================-
+	public function get_data_transactiontutor()
+	{
+		$query = "SELECT tutors.id, tutors.name FROM tutors ORDER BY tutors.id ASC";
+		return $this->db->query($query)->result_array();
+	}
 }

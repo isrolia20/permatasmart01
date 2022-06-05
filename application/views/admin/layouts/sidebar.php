@@ -18,8 +18,8 @@ $url2 = $this->uri->segment(2);
 				<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th-large"></i> <span>Data Master</span></a>
 				<ul class="dropdown-menu">
 					<li class="<?= $url2 == "package" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('admin/package'); ?>">Paket Kelas</a></li>
-					<li class="<?= $url2 == "feature" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('admin/feature'); ?>">Fitur Kelas</a></li>
-					<li class="<?= $url2 == "leason" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('admin/leason'); ?>">Daftar Kelas</a></li>
+					<li class="<?= $url2 == "feature" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('admin/feature'); ?>">Daftar Kelas</a></li>
+					<li class="<?= $url2 == "leason" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('admin/leason'); ?>">Jadwal Kelas</a></li>
 				</ul>
 			</li>
 			<!-- <li class="<?= $url2 == "review" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('admin/review'); ?>"><i class="far fa-file-alt"></i> <span>Review Kelas</span></a></li> -->

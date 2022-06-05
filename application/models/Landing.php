@@ -27,11 +27,13 @@ class Landing extends CI_Model
 
 	public function get_payment($id)
 	{
-		$this->db->select('*,tutors.name AS tutor ,transactions.id AS transaction_id, students.name AS student_name, packages.name AS package_name, students.id AS student_id, packages.id AS package_id');
+		$this->db->select('*,tutors.name AS tutor ,transactions.id AS transaction_id, students.name AS student_name, packages.name AS package_name, students.id AS student_id, packages.id AS package_id, leasons.name AS hari, features.name AS kelas');
 		$this->db->from('transactions');
 		$this->db->join('tutors', 'tutors.id = tutor_id', 'left');
 		$this->db->join('students', 'students.id = transactions.student_id');
 		$this->db->join('packages', 'packages.id = transactions.package_id');
+		$this->db->join('leasons', 'leasons.package_id = packages.id');
+		$this->db->join('features', 'features.package_id = packages.id');
 		// $this->db->join('schedules', 'schedules.id = packages.schedule_id');
 		$this->db->where('student_id', $id);
 
@@ -50,11 +52,11 @@ class Landing extends CI_Model
 	public function get_packages()
 	{
 		// $this->db->select('*, packages.name AS package, schedules.schedule AS schedule');
-		$this->db->select('*, packages.name AS package');
+		$this->db->select('*, packages.name AS package, leasons.name AS lsname, leasons.pukul AS lspukul, features.name AS fskelas');
 		$this->db->from('packages');
-		// $this->db->join('features', 'features.package_id = packages.id');
+		$this->db->join('features', 'features.package_id = packages.id');
 		// $this->db->join('schedules', 'schedules.id = packages.schedule_id');
-		// $this->db->join('leasons', 'leasons.package_id = packages.id', 'inner');
+		$this->db->join('leasons', 'leasons.package_id = packages.id', 'inner');
 		$query = $this->db->get();
 		return $query->result();
 	}

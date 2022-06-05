@@ -106,5 +106,24 @@ class Leason extends CI_Model
 	{
 		$this->db->where('id', $id);
 		$this->db->delete($this->table);
+		return true;
+	}
+
+
+
+
+
+
+	// -================== v ==================-
+	public function get_data_leason()
+	{
+		$query = "SELECT * FROM leasons ORDER BY leasons.id ASC";
+		return $this->db->query($query)->result_array();
+	}
+	// -================== v ==================-
+	public function get_data_leasonpackages()
+	{
+		$query = "SELECT packages.id, packages.name FROM packages ORDER BY packages.id ASC";
+		return $this->db->query($query)->result_array();
 	}
 }

@@ -22,7 +22,7 @@
 						<thead>
 							<tr>
 								<th>No</th>
-								<th>Kelas</th>
+								<th>Paket</th>
 								<th>Jadwal</th>
 								<th>Durasi</th>
 								<th>Status</th>
@@ -39,7 +39,7 @@
 								<tr>
 									<td scope="row"><?= $no++ ?></td>
 									<td><?= $row->package_name; ?></td>
-									<td><?= $row->schedule; ?></td>
+									<td><?= $row->pukul; ?></td>
 									<td><?= $row->duration; ?></td>
 									<td><?= $row->status; ?></td>
 									<!-- <td><?= $row->total; ?></td> -->
@@ -58,6 +58,50 @@
 									</td>
 								</tr>
 							<?php } ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ======= Breadcrumbs ======= -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<h2>Jadwal</h2>
+			<p>Jadwal Akan Muncul Jika sudah Di acc oleh Admin </p>
+		</div>
+	</div><!-- End Breadcrumbs -->
+
+	<section class="section text-dark">
+		<div class="container" data-aos="fade-up">
+			<div class="row">
+				<div class="col-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>No</th>
+								<th>Kelas</th>
+								<th>Hari</th>
+								<th>Jadwal</th>
+								<th>Durasi</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+							$no = 1;
+							foreach ($data as $row) : ?>
+								<?php if ($row->status == 'verified') : ?>
+									<tr>
+										<td scope="row"><?= $no++ ?></td>
+										<td><?= $row->kelas; ?></td>
+										<td><?= $row->hari; ?></td>
+										<td><?= $row->pukul; ?></td>
+										<td><?= $row->duration; ?></td>
+									</tr>
+								<?php endif; ?>
+							<?php endforeach; ?>
 						</tbody>
 					</table>
 				</div>

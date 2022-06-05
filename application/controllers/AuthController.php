@@ -288,7 +288,8 @@ class AuthController extends CI_Controller
 						$session = array(
 							'id' => $student_data['id'],
 							'name' => $student_data['name'],
-							'role' => $student_data['role']
+							'role' => $student_data['role'],
+							'level' => $student_data['level'],
 						);
 						$this->session->set_userdata($session);
 						redirect('/');

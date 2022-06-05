@@ -15,73 +15,104 @@ class LeasonController extends CI_Controller
 
 	public function index()
 	{
+		$data['title'] = "Jadwal";
+		$data['data_jadwal'] = $this->model_data->get_data_leason();
+		$data['data_leasonpaket'] = $this->model_data->get_data_leasonpackages();
 		$data['content'] = 'admin/pages/_leason';
 		$this->load->view('admin/layouts/master', $data);
 	}
 
-	function get_data_user()
-	{
-		$list = $this->model_data->get_datatables();
-		$data = array();
-		$no = $_POST['start'];
-		foreach ($list as $field) {
-			$no++;
-			$row = array();
-			$row[] = $no;
-			$row[] = $field->package_id;
-			$row[] = $field->name;
-			$row[] = '<td><button class="btn btn-primary btn-class" onclick="updateList(' . "'" . $field->id . "'" . ')"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-danger btn-class" onclick="deleteList(' . "'" . $field->id . "'" . ')"><i class="fa fa-trash"></i></button></td>';
+	// function get_data_user()
+	// {
+	// 	$list = $this->model_data->get_datatables();
+	// 	$data = array();
+	// 	$no = $_POST['start'];
+	// 	foreach ($list as $field) {
+	// 		$no++;
+	// 		$row = array();
+	// 		$row[] = $no;
+	// 		$row[] = $field->package_id;
+	// 		$row[] = $field->name;
+	// 		$row[] = '<td><button class="btn btn-primary btn-class" onclick="updateList(' . "'" . $field->id . "'" . ')"><i class="fas fa-edit"></i></button>
+	//         <button class="btn btn-danger btn-class" onclick="deleteList(' . "'" . $field->id . "'" . ')"><i class="fa fa-trash"></i></button></td>';
 
-			$data[] = $row;
-		}
+	// 		$data[] = $row;
+	// 	}
 
-		$output = array(
-			"draw" => $_POST['draw'],
-			"recordsTotal" => $this->model_data->count_all(),
-			"recordsFiltered" => $this->model_data->count_filtered(),
-			"data" => $data,
-		);
-		//output dalam format JSON
-		echo json_encode($output);
-	}
+	// 	$output = array(
+	// 		"draw" => $_POST['draw'],
+	// 		"recordsTotal" => $this->model_data->count_all(),
+	// 		"recordsFiltered" => $this->model_data->count_filtered(),
+	// 		"data" => $data,
+	// 	);
+	// 	//output dalam format JSON
+	// 	echo json_encode($output);
+	// }
 
-	function get_data_package()
-	{
-		$output = $this->model_data->get_packages();
-		echo json_encode($output);
-	}
+	// function get_data_package()
+	// {
+	// 	$output = $this->model_data->get_packages();
+	// 	echo json_encode($output);
+	// }
+
 	public function add()
 	{
-		$this->_validate();
+		// $this->_validate();
 		$package_id = $this->input->post('package_id');
 		$data = array(
 			'package_id' => $package_id,
 			'name' => $this->input->post('name'),
+			'pukul' => $this->input->post('pukul_mulai') . ' - ' . $this->input->post('pukul_selesai'),
 		);
 		$insert = $this->model_data->add($data);
-		echo json_encode(array("status" => TRUE));
+		if ($insert) {
+			$this->session->set_flashdata('message', 'Sukses terinput');
+			redirect('/admin/leason');
+		} else {
+			$this->session->set_flashdata('message', 'Gagal terinput');
+			redirect('/admin/leason');
+		}
+		// echo json_encode(array("status" => TRUE));
 	}
-	public function get_id($id)
+
+	// public function get_id($id)
+	// {
+	// 	$data = $this->model_data->get_id($id);
+	// 	echo json_encode($data);
+	// }
+
+	public function update($id = 0)
 	{
-		$data = $this->model_data->get_id($id);
-		echo json_encode($data);
-	}
-	public function update($id)
-	{
-		$this->_validate();
+		// $this->_validate();
+		$id = $this->input->post('id');
 		$package_id = $this->input->post('package_id');
 		$data = array(
 			'package_id' => $package_id,
 			'name' => $this->input->post('name'),
+			'pukul' => $this->input->post('pukul_mulai') . ' - ' . $this->input->post('pukul_selesai'),
 		);
-		$this->model_data->update(array('id' => $id), $data);
-		echo json_encode(array("status" => TRUE));
+		$update = $this->model_data->update(array('id' => $id), $data);
+		if ($update) {
+			$this->session->set_flashdata('message', 'Sukses terupdate');
+			redirect('/admin/leason');
+		} else {
+			$this->session->set_flashdata('message', 'Gagal terupdate');
+			redirect('/admin/leason');
+		}
+		// echo json_encode(array("status" => TRUE));
 	}
-	public function delete($id)
+	public function delete($id = 0)
 	{
-		$this->model_data->delete($id);
-		echo json_encode(array("status" => TRUE));
+		$id = $this->input->post('id');
+		$delete = $this->model_data->delete($id);
+		if ($delete) {
+			$this->session->set_flashdata('message', 'Sukses terhapus');
+			redirect('/admin/leason');
+		} else {
+			$this->session->set_flashdata('message', 'Gagal terhapus');
+			redirect('/admin/leason');
+		}
+		// echo json_encode(array("status" => TRUE));
 	}
 
 	private function _validate()

@@ -1,13 +1,13 @@
 <section class="section">
 	<div class="section-header"><a href="/">
-			<h1>Fitur</h1>
+			<h1>Kelas</h1>
 		</a></div>
 	<div class="section-body">
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-						<h4>Table Fitur</h4>
+						<h4>Table Kelas</h4>
 						<div class="card-header-action"><button class="btn btn-primary" onclick="add()">Tambah Data</button></div>
 					</div>
 					<div class="card-body">
@@ -16,9 +16,9 @@
 								<thead>
 									<tr>
 										<th scope="col">#</th>
-										<th scope="col">Package</th>
-										<th scope="col">Name</th>
-										<th scope="col">Action</th>
+										<th scope="col">Paket</th>
+										<th scope="col">Kelas</th>
+										<th scope="col">Aksi</th>
 									</tr>
 								</thead>
 								<tbody class="table-content">
@@ -36,12 +36,12 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3 class="modal-title">Modal title</h3>
+				<h3 class="modal-title">Modal Kelas</h3>
 			</div>
 			<div class="modal-body">
 				<form action="#" id="form">
 					<div class="form-group">
-						<label for="">Name</label>
+						<label for="">Kelas</label>
 						<input type="text" class="form-control" id="name" name="name">
 						<span class="help-block text-danger text-capitalize"></span>
 					</div>
