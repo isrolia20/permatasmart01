@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Bulan Mei 2022 pada 16.30
+-- Waktu pembuatan: 05 Jun 2022 pada 04.25
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `permatasmart`
+-- Database: `permatasmart01`
 --
 
 -- --------------------------------------------------------
@@ -82,10 +82,10 @@ CREATE TABLE `features` (
 --
 
 INSERT INTO `features` (`id`, `package_id`, `name`) VALUES
-(2, 'Quis ipsum', 'Jamalia Powell'),
-(3, 'Eius quas ', ''),
-(4, 'Adipisicin', 'dfsdfsdf'),
-(5, 'Adipisicin', 'jhjksdfasdklfhasdfasdf');
+(8, '2', '2'),
+(9, '1', '1, 2, 3'),
+(11, '3', '3'),
+(13, '4', '7');
 
 -- --------------------------------------------------------
 
@@ -96,16 +96,19 @@ INSERT INTO `features` (`id`, `package_id`, `name`) VALUES
 CREATE TABLE `leasons` (
   `id` int(11) NOT NULL,
   `package_id` varchar(10) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `pukul` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `leasons`
 --
 
-INSERT INTO `leasons` (`id`, `package_id`, `name`) VALUES
-(1, 'Adipisicin', 'fasdfasdfsdafsdafasdf'),
-(2, 'Quis ipsum', 'asdfasdfasdfasdfasdf');
+INSERT INTO `leasons` (`id`, `package_id`, `name`, `pukul`) VALUES
+(9, '1', 'Senin, Selasa, Rabu', '19:00 - 20:00'),
+(10, '2', 'Selasa, Rabu, Kamis', '19:00 - 20:00'),
+(11, '3', 'Kamis, Jumat, Sabtu', '19:00 - 20:00'),
+(12, '4', 'Kamis, Jumat, Sabtu', '19:00 - 20:00');
 
 -- --------------------------------------------------------
 
@@ -129,9 +132,10 @@ CREATE TABLE `packages` (
 --
 
 INSERT INTO `packages` (`id`, `admin_id`, `name`, `slug`, `price`, `description`, `duration`, `level`) VALUES
-('Adipisicin', 5, 'Bruno Cardenas', 'bruno-cardenas', 317, 'Aliquid aliquam et n', 2000, 'sd'),
-('Eius quas ', 5, 'Leslie Moran', 'leslie-moran', 333, 'Doloribus placeat d', 1000, 'sd'),
-('Quis ipsum', 5, 'Cairo Conley', 'cairo-conley', 718, 'A fuga Voluptatum d', 3000, 'smp');
+('1', 5, 'Paket Hemat 1', 'paket-hemat-1', 300000, 'Materi SD : IPA, IPS, PPkn, Matematika', 4000, 'sd'),
+('2', 5, 'Paket Hemat 2', 'paket-hemat-2', 450000, 'Materi SD : PPkn, Matematika, Bhs Inggris, Bhs Indonesia', 4000, 'sd'),
+('3', 5, 'Paket Hemat 3', 'paket-hemat-3', 560000, 'Materi SD : PPkn, Matematika, Bhs Inggris, Bhs Indonesia', 20000, 'sd'),
+('4', 5, 'Paket Hemat 1', 'paket-hemat-1', 600000, 'Mtk, IPA, IPS, Bhs Indo, Bhs Inggris', 2000, 'smp');
 
 -- --------------------------------------------------------
 
@@ -216,7 +220,7 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `student_id`, `tutor_id`, `package_id`, `status`, `is_active`, `receipt`, `discount`, `total`, `schedule`, `created_at`, `updated_at`) VALUES
-('2022050706', 25, 2, 'Adipisicin', 'verified', '', NULL, NULL, 317, '0000-00-00', '2022-05-07 00:43:59', '0000-00-00 00:00:00');
+('2022060508', 27, NULL, '3', 'pending', 'active', NULL, NULL, 560000, '0000-00-00', '2022-06-05 02:25:15', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -385,13 +389,13 @@ ALTER TABLE `faqs`
 -- AUTO_INCREMENT untuk tabel `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `leasons`
 --
 ALTER TABLE `leasons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `reviews`
@@ -437,7 +441,7 @@ ALTER TABLE `admins`
 -- Ketidakleluasaan untuk tabel `features`
 --
 ALTER TABLE `features`
-  ADD CONSTRAINT `features_ibfk_1` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`);
+  ADD CONSTRAINT `features_ibfk_1` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `leasons`
