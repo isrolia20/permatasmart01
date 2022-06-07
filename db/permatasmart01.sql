@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jun 2022 pada 04.25
+-- Waktu pembuatan: 07 Jun 2022 pada 05.20
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -242,16 +242,18 @@ CREATE TABLE `tutors` (
   `level` enum('sd','smp','sma') NOT NULL,
   `schedule` varchar(100) NOT NULL,
   `is_active` enum('active','inactive') NOT NULL,
-  `is_available` enum('available','not_available') NOT NULL
+  `is_available` enum('available','not_available') NOT NULL,
+  `file_pdf` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tutors`
 --
 
-INSERT INTO `tutors` (`id`, `user_id`, `leason_id`, `schedule_id`, `name`, `address`, `sex`, `phone_number`, `bio`, `profession`, `level`, `schedule`, `is_active`, `is_available`) VALUES
-(2, 45, NULL, NULL, 'Dean Cannon', 'Odio est aut sapien', 'laki-laki', '+1 (651) 499-52', 'Dolor et sint ab par', 'Et natus ratione rat', 'sd', 'Quisquam sed tempor ', 'inactive', 'available'),
-(4, 50, NULL, NULL, 'Dino Pandu Satrio', 'Jl dharma putra no 14', 'laki-laki', '087177177177', 'Seorang Ayah', 'Guru Honorer', 'sd', '09.00', 'inactive', 'available');
+INSERT INTO `tutors` (`id`, `user_id`, `leason_id`, `schedule_id`, `name`, `address`, `sex`, `phone_number`, `bio`, `profession`, `level`, `schedule`, `is_active`, `is_available`, `file_pdf`) VALUES
+(2, 45, NULL, NULL, 'Dean Cannon', 'Odio est aut sapien', 'laki-laki', '+1 (651) 499-52', 'Dolor et sint ab par', 'Et natus ratione rat', 'sd', 'Quisquam sed tempor ', 'inactive', 'available', NULL),
+(4, 50, NULL, NULL, 'Dino Pandu Satrio', 'Jl dharma putra no 14', 'laki-laki', '087177177177', 'Seorang Ayah', 'Guru Honorer', 'sd', '09.00', 'inactive', 'available', NULL),
+(6, 56, NULL, NULL, 'Agya', 'Jl Karuwa', 'perempuan', '089112122122', 'Suka mengajar', 'Guru Honorer', 'sd', 'Malam', 'active', 'available', 'SKL_Prayud_25_Oktober_20212.pdf');
 
 -- --------------------------------------------------------
 
@@ -284,7 +286,8 @@ INSERT INTO `users` (`id`, `email`, `password`, `email_verified_at`, `avatar`, `
 (46, 'student2@student.com', '$2y$10$haP5.uKVwmsyrI74a0W7SOze6uXM8ctaYtVEnGaEDMFs7uMpCJPTW', NULL, NULL, 'active', 'student', NULL, NULL, NULL),
 (47, 'student3@student.com', '$2y$10$SUGQkftdnMzXYn8dp1D2yOckaSuRqciGfI1JMtXiv/ayn0of3PT0m', NULL, NULL, 'active', 'student', NULL, NULL, NULL),
 (48, 'syahdiakbar@gmail.com', '$2y$10$eB2UfSLsioiaKy6TZCobkeAyqCnH1eFUwTZnRX6g3EvK1Jl6zUpGW', NULL, '1641714068608.jpg', 'active', 'student', NULL, NULL, NULL),
-(50, 'dino@gmail.com', '$2y$10$7WFqoSxAoFgLxe2.oci6ZeEPvadvUlnh3FUeDS1N9TL1oHcUWQrMa', NULL, 'IMG-20181123-WA0027.jpg', 'active', 'tutor', NULL, NULL, NULL);
+(50, 'dino@gmail.com', '$2y$10$7WFqoSxAoFgLxe2.oci6ZeEPvadvUlnh3FUeDS1N9TL1oHcUWQrMa', NULL, 'IMG-20181123-WA0027.jpg', 'active', 'tutor', NULL, NULL, NULL),
+(56, 'ageng@gmail.com', '$2y$10$1ElWDC2GiVthgiJTW7x3.uTp3gZCizXgbN5nvWBMOSBJF15weqzbW', NULL, NULL, 'active', 'tutor', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -419,13 +422,13 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT untuk tabel `tutors`
 --
 ALTER TABLE `tutors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
