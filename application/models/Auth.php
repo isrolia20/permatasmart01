@@ -17,7 +17,7 @@ class Auth extends CI_Model
 
 	public function authTutor($data)
 	{
-		$this->db->select('*, tutors.id AS tutor_id');
+		$this->db->select('*, tutors.id AS tutor_id, tutors.is_active AS tutor_act');
 		$this->db->from('tutors');
 		$this->db->join('users', 'users.id = user_id');
 		$this->db->where($data);

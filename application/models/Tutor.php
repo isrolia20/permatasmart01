@@ -15,7 +15,7 @@ class Tutor extends CI_Model
 
 	private function _get_datatables_query()
 	{
-		$this->db->select('*, tutors.id AS tutor_id');
+		$this->db->select('*, tutors.id AS tutor_id, tutors.is_active AS tutor_act');
 		if ($this->input->post('id')) {
 			$this->db->like('id', $this->input->post('id'));
 		}
@@ -90,7 +90,7 @@ class Tutor extends CI_Model
 	}
 	public function get_id($id)
 	{
-		$this->db->select('*, tutors.id AS tutor_id');
+		$this->db->select('*, tutors.id AS tutor_id, tutors.is_active AS tutor_act');
 		$this->db->from($this->table);
 		$this->db->join('users', 'users.id = tutors.user_id', 'left');
 		$this->db->where('tutors.id', $id);

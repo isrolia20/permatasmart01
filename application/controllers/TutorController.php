@@ -39,15 +39,18 @@ class TutorController extends CI_Controller
 				$row[] = '<a href="' . base_url('upload/' . $field->avatar) . '" target="_blank"><img src="' . base_url('upload/' . $field->avatar) . '" class="img-responsive" style="width: 50px;" /></a>';
 			else
 				$row[] = '(No avatar)';
-			$row[] = $field->role;
-			$row[] = $field->is_active == 'active' ? '<div class="badge badge-success">Aktif</div>' : '<div class="badge badge-light">Tidak Aktif</div>';
-			if ($field->role == 'admin') {
-				$row[] = '<td><button class="btn btn-primary btn-class" onclick="updateList(' . "'" . $field->id . "'" . ')"><i class="fas fa-edit"></i></button>
-				<button class="btn btn-danger btn-class" onclick="deleteList(' . "'" . $field->id . "'" . ')"><i class="fa fa-trash"></i></button></td>';
+			$row[] = $field->tutor_act;
+			if ($field->file_pdf)
+				$row[] = '<a href="' . base_url('upload/file_pdf/' . $field->file_pdf) . '" target="_blank">' . $field->file_pdf  . '</a>';
+			else
+				$row[] = '(No File)';
+			$row[] = $field->is_available == 'available' ? '<div class="badge badge-success">Tersedia</div>' : '<div class="badge badge-light">Tidak Tersedia</div>';
+			if ($this->session->userdata("role") == "admin") {
+				$row[] = '<td><button class="btn btn-primary btn-class" onclick="updateList(' . "'" . $field->tutor_id . "'" . ')"><i class="fas fa-edit"></i></button>
+				<button class="btn btn-danger btn-class" onclick="deleteList(' . "'" . $field->tutor_id . "'" . ')"><i class="fa fa-trash"></i></button></td>';
 			} else {
 				$row[] = 'No Action';
 			}
-			$row[] = $field->is_available == 'available' ? '<div class="badge badge-success">Tersedia</div>' : '<div class="badge badge-light">Tidak Tersedia</div>';;
 			$data[] = $row;
 		}
 
@@ -111,12 +114,13 @@ class TutorController extends CI_Controller
 	}
 	public function update($id)
 	{
-		$this->_validate();
+		$this->_validate_sec();
 		$data['content'] = 'admin/pages/_user';
 		$this->load->view('admin/layouts/master', $data);
 		$data = array(
-			'username' => $this->input->post('username'),
-			'email' => $this->input->post('email'),
+			// 'username' => $this->input->post('username'),
+			// 'email' => $this->input->post('email'),
+			'is_active' => $this->input->post('is_active'),
 		);
 
 		if (!empty($_FILES['avatar']['name'])) {
@@ -156,6 +160,26 @@ class TutorController extends CI_Controller
 			$data['error_string'][] = 'asnwer is required';
 			$data['status'] = FALSE;
 		}
+
+		if ($data['status'] === FALSE) {
+			echo json_encode($data);
+			exit();
+		}
+	}
+
+	private function _validate_sec()
+	{
+		$data = array();
+		$data['error_string'] = array();
+		$data['inputerror'] = array();
+		$data['status'] = TRUE;
+
+		if ($this->input->post('is_active') == '') {
+			$data['inputerror'][] = 'is_active';
+			$data['error_string'][] = 'is_active is required';
+			$data['status'] = FALSE;
+		}
+
 
 		if ($data['status'] === FALSE) {
 			echo json_encode($data);

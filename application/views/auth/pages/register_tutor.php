@@ -16,7 +16,7 @@
 						</div>
 
 						<div class="card-body">
-							<form method="POST" action="<?= base_url('AuthController/save_tutor'); ?>" class="needs-validation" novalidate="">
+							<form method="POST" action="<?= base_url('AuthController/save_tutor'); ?>" class="needs-validation" novalidate="" enctype="multipart/form-data">
 								<div class="form-group">
 									<label for="email">Email</label>
 									<input id="email" type="email" class="form-control" name="email">
@@ -72,11 +72,20 @@
 									<input id="profession" type="text" class="form-control" name="profession" autofocus>
 								</div>
 
-								<div class="form-group">
-									<label for="bio">Bio</label>
-									<input id="bio" type="text" class="form-control" name="bio" autofocus>
+								<div class="row">
+									<div class="form-group col-6">
+										<div class="form-group">
+											<label for="bio">Bio</label>
+											<input id="bio" type="text" class="form-control" name="bio" autofocus>
+										</div>
+									</div>
+									<div class="form-group col-6">
+										<div class="form-group">
+											<label for="CV Pendukung">CV Pendukung <small class="text-danger">*Harus Format PDF</small> </label>
+											<input id="file_pdf" type="file" class="form-control" name="file_pdf" autofocus>
+										</div>
+									</div>
 								</div>
-
 
 								<div class="form-group">
 									<label for="schedule">Jadwal</label>

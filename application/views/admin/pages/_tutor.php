@@ -24,6 +24,7 @@
                                         <th scope="col">Profesi</th>
                                         <th scope="col">Avatar</th>
                                         <th scope="col">is_active</th>
+                                        <th scope="col">File PDF</th>
                                         <th scope="col">is_available</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -47,7 +48,7 @@
                 <h3 class="modal-title">Modal title</h3>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form" action="<?= base_url('AuthController/save_tutor'); ?>" enctype="multipart/form-data">
+                <form method="POST" id="form" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input id="email" type="email" class="form-control" name="email">
@@ -88,7 +89,7 @@
                     </div>
 
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="form-group col-6">
                             <label for="parent">Nama Orangtua</label>
                             <input id="parent" type="text" class="form-control" name="parent" autofocus>
@@ -98,7 +99,7 @@
                             <label for="phone_number_parent">Nomor Orangtua</label>
                             <input id="phone_number_parent" type="text" class="form-control" name="phone_number_parent" autofocus>
                         </div>
-                    </div>
+                    </div> -->
 
 
 
@@ -108,10 +109,10 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="school">Nama Sekolah</label>
                         <input id="school" type="text" class="form-control" name="school" autofocus>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <div class="form-group col-6">
@@ -123,11 +124,20 @@
                             </select>
                         </div>
 
-
                         <div class="form-group col-6">
+                            <label>Aktif</label>
+                            <select class="form-control selectric" name="is_active">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="suspend">Suspend</option>
+                            </select>
+                        </div>
+
+
+                        <!-- <div class="form-group col-6">
                             <label for="class">Kelas</label>
                             <input id="class" type="text" class="form-control" name="class" autofocus>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="form-group" id="avatar-preview">
@@ -221,18 +231,19 @@
             type: 'GET',
             dataType: 'JSON',
             success: function(data) {
-                // $('[name="id"]').val(data.id);
+                $('[name="id"]').val(data.id);
                 $('[name="email"]').val(data.email);
                 $('[name="name"]').val(data.name);
                 $('[name="address"]').val(data.address);
                 $('[name="sex"]').val(data.sex);
                 $('[name="phone_number"]').val(data.phone_number);
-                $('[name="parent"]').val(data.parent);
-                $('[name="phone_number_parent"]').val(data.phone_number_parent);
+                // $('[name="parent"]').val(data.parent);
+                // $('[name="phone_number_parent"]').val(data.phone_number_parent);
                 $('[name="bio"]').val(data.bio);
-                $('[name="school"]').val(data.school);
+                // $('[name="school"]').val(data.school);
                 $('[name="level"]').val(data.level);
-                $('[name="class"]').val(data.class);
+                $('[name="is_active"]').val(data.tutor_act);
+                // $('[name="class"]').val(data.class);
                 // $('[name="is_active"]').val(data.is_active);
 
 
@@ -307,7 +318,7 @@
                 console.log(jqXHR)
                 console.log(textStatus)
                 console.log(errorThrown)
-                alert('Error adding / update data' + jqXHR);
+                document.location.href = "<?= base_url('admin/tutor') ?>"
                 $('#btnSave').text('save'); //change button text
                 $('#btnSave').attr('disabled', false); //set button enable
 

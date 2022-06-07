@@ -71,6 +71,56 @@ class AuthController extends CI_Controller
 			// } else {
 			// 	redirect('/login');
 			// }
+			// cek jika ada file
+			$upload_image = $_FILES['file_pdf']['name'];
+			if ($upload_image) {
+				$config['upload_path'] = './upload/file_pdf';
+				$config['allowed_types'] = 'pdf';
+				$config['max_size'] = '2048';  //2MB max
+				$config['max_width'] = '7000'; // pixel
+				$config['max_height'] = '7000'; // pixel
+
+				$this->load->library('upload', $config);
+
+				if ($this->upload->do_upload('file_pdf')) {
+					//get file yang baru
+					$additional_data = array(
+						'user_id' => $insertUser,
+						'name' => $this->input->post('name', true),
+						'address' => $this->input->post('address', true),
+						'sex' => $this->input->post('sex', true),
+						'phone_number' => $this->input->post('phone_number', true),
+						'bio' => $this->input->post('bio', true),
+						'profession' => $this->input->post('profession', true),
+						'level' => $this->input->post('level', true),
+						'schedule' => $this->input->post('schedule', true),
+						'is_active' => 'inactive',
+						'is_available' => 'available',
+						'file_pdf' => $this->upload->data('file_name'),
+					);
+
+					// print_r($additional_data . "Ada file");
+					// die;
+
+					$insertStudent = $this->auth->saveTutor($additional_data);
+
+					if ($insertStudent == false) {
+						echo $this->upload->display_errors();
+						die();
+					} else {
+						redirect('login');
+					}
+				} else {
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                    Ukuran melebihi batas. Maksimal 2 MB
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>');
+					redirect('login');
+				}
+			}
+
 			$additional_data = array(
 				'user_id' => $insertUser,
 				'name' => $this->input->post('name', true),
@@ -84,9 +134,13 @@ class AuthController extends CI_Controller
 				'is_active' => 'inactive',
 				'is_available' => 'available',
 			);
+
+			// print_r($additional_data . 'Tidak ada file');
+			// die;
+
 			$insertStudent = $this->auth->saveTutor($additional_data);
 
-			if (false) {
+			if ($insertStudent == false) {
 				echo $this->upload->display_errors();
 				die();
 			} else {
@@ -263,22 +317,29 @@ class AuthController extends CI_Controller
 		} else {
 			if ($role === 'tutor') {
 				$tutor_data = $this->auth->authTutor(['email' => $email])->row_array();
-				if ($tutor_data !== NULL) {
-					if (password_verify($password, $tutor_data['password'])) {
-						$session = array(
-							'id' => $tutor_data['id'],
-							'name' => $tutor_data['name'],
-							'email' => $tutor_data['email'],
-							'role' => $tutor_data['role']
-						);
-						$this->session->set_userdata($session);
-						redirect('/tutor');
+				// print_r();
+				// die;
+				if ($tutor_data['tutor_act'] != "inactive") {
+					if ($tutor_data !== NULL) {
+						if (password_verify($password, $tutor_data['password'])) {
+							$session = array(
+								'id' => $tutor_data['id'],
+								'name' => $tutor_data['name'],
+								'email' => $tutor_data['email'],
+								'role' => $tutor_data['role']
+							);
+							$this->session->set_userdata($session);
+							redirect('/tutor');
+						} else {
+							$this->session->set_flashdata('message', 'Password yang anda masukkan salah');
+							redirect('login');
+						}
 					} else {
-						$this->session->set_flashdata('message', 'Password yang anda masukkan salah');
+						$this->session->set_flashdata('message', 'Email tidak terdaftar sebagai tutor');
 						redirect('login');
 					}
 				} else {
-					$this->session->set_flashdata('message', 'Email tidak terdaftar sebagai tutor');
+					$this->session->set_flashdata('message', 'Tutor belum diaktifkan');
 					redirect('login');
 				}
 			} else if ($role === 'siswa') {
