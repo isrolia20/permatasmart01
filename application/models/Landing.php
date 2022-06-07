@@ -41,6 +41,22 @@ class Landing extends CI_Model
 		return $query->result();
 	}
 
+	public function get_schedule($id)
+	{
+		$this->db->select('*,tutors.name AS tutor ,transactions.id AS transaction_id, students.name AS student_name, packages.name AS package_name, students.id AS student_id, packages.id AS package_id, leasons.name AS hari, features.name AS kelas');
+		$this->db->from('transactions');
+		$this->db->join('tutors', 'tutors.id = tutor_id', 'left');
+		$this->db->join('students', 'students.id = transactions.student_id');
+		$this->db->join('packages', 'packages.id = transactions.package_id');
+		$this->db->join('leasons', 'leasons.package_id = packages.id');
+		$this->db->join('features', 'features.package_id = packages.id');
+		// $this->db->join('schedules', 'schedules.id = packages.schedule_id');
+		$this->db->where('tutor_id', $id);
+
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	public function get_class()
 	{
 		$this->db->from('packages');

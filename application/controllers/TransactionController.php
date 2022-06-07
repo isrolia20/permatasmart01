@@ -204,6 +204,7 @@ class TransactionController extends CI_Controller
 		}
 		// echo json_encode(array("status" => TRUE));
 	}
+
 	public function delete($id)
 	{
 		$this->model_data->delete($id);

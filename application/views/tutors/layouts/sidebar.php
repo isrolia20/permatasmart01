@@ -13,7 +13,7 @@ $url2 = $this->uri->segment(2);
 		<ul class="sidebar-menu">
 			<li class="menu-header">Dashboard</li>
 			<li class="<?= $url2 == "dashboard" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('tutor') ?>"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
-			<li class="menu-header">Master</li>
+			<!-- <li class="menu-header">Master</li>
 			<li class="<?= $url2 == "package" || $url2 == "feature" || $url2 == "leason" ? 'active' : '' ?> nav-item dropdown">
 				<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th-large"></i> <span>Data Master</span></a>
 				<ul class="dropdown-menu">
@@ -21,10 +21,10 @@ $url2 = $this->uri->segment(2);
 					<li class="<?= $url2 == "feature" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('tutor/feature'); ?>">Fitur Kelas</a></li>
 					<li class="<?= $url2 == "leason" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('tutor/leason'); ?>">Daftar Kelas</a></li>
 				</ul>
-			</li>
+			</li> -->
 			<!-- <li class="<?= $url2 == "review" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('tutor/review'); ?>"><i class="far fa-file-alt"></i> <span>Review Kelas</span></a></li> -->
-			<li class="<?= $url2 == "transaction" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('tutor/transaction'); ?>"><i class="fas fa-shopping-cart"></i> <span>Transaksi</span></a></li>
-			<li class="<?= $url2 == "faq" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('tutor/faq'); ?>"><i class="fas fa-question-circle"></i> <span>FAQ</span></a></li>
+			<li class="<?= $url2 == "transaction" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('tutor/transaction'); ?>"><i class="fas fa-calendar"></i> <span>Jadwal</span></a></li>
+			<!-- <li class="<?= $url2 == "faq" ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('tutor/faq'); ?>"><i class="fas fa-question-circle"></i> <span>FAQ</span></a></li> -->
 			<!-- <li class="menu-header">User</li>
 			<li class="nav-item dropdown <?= $url2 == "user" || $url2 == "admin" || $url2 == "tutor" || $url2 == "student" ? 'active' : '' ?>">
 				<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i> <span>Data User</span></a>

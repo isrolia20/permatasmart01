@@ -326,7 +326,8 @@ class AuthController extends CI_Controller
 								'id' => $tutor_data['id'],
 								'name' => $tutor_data['name'],
 								'email' => $tutor_data['email'],
-								'role' => $tutor_data['role']
+								'role' => $tutor_data['role'],
+								'tutor_id' => $tutor_data['tutor_id'],
 							);
 							$this->session->set_userdata($session);
 							redirect('/tutor');
