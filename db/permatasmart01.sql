@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jun 2022 pada 05.20
+-- Waktu pembuatan: 07 Jun 2022 pada 08.09
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -192,7 +192,8 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`id`, `user_id`, `name`, `address`, `sex`, `phone_number`, `parent`, `phone_number_parent`, `bio`, `school`, `level`, `class`) VALUES
 (25, 46, 'Hilel Kidd', 'Nemo amet itaque of', 'perempuan', '+1 (504) 555-34', 'Dolor natus quidem i', '+1 (617) 872-87', 'Autem laboris labori', 'Nam anim temporibus ', 'sd', 'Incid'),
 (26, 47, 'Ila Dennis', 'Aut in veniam enim ', 'perempuan', '+1 (411) 449-63', 'Itaque nulla consequ', '+1 (495) 121-48', 'Sit repellendus De', 'SMP A', 'smp', '5'),
-(27, 48, 'Dwi Bagus', 'Kp. Krajan RT03/RW01', 'laki-laki', '089112122122', 'Yani', 'Uhtea', 'Yuks', 'SD bws', 'sd', '2');
+(27, 48, 'Dwi Bagus', 'Kp. Krajan RT03/RW01', 'laki-laki', '089112122122', 'Yani', 'Uhtea', 'Yuks', 'SD bws', 'sd', '2'),
+(28, 57, 'inzaghi', 'JL Waru', 'laki-laki', '089112122122', 'Toni', '083811910100', 'Pesepak Bola', 'SD Mojopahit', 'sd', '4');
 
 -- --------------------------------------------------------
 
@@ -220,7 +221,7 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `student_id`, `tutor_id`, `package_id`, `status`, `is_active`, `receipt`, `discount`, `total`, `schedule`, `created_at`, `updated_at`) VALUES
-('2022060508', 27, NULL, '3', 'pending', 'active', NULL, NULL, 560000, '0000-00-00', '2022-06-05 02:25:15', '0000-00-00 00:00:00');
+('2022060508', 27, 6, '3', 'verified', 'active', '1654580694751.jpg', NULL, 560000, '0000-00-00', '2022-06-07 05:46:24', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -287,7 +288,8 @@ INSERT INTO `users` (`id`, `email`, `password`, `email_verified_at`, `avatar`, `
 (47, 'student3@student.com', '$2y$10$SUGQkftdnMzXYn8dp1D2yOckaSuRqciGfI1JMtXiv/ayn0of3PT0m', NULL, NULL, 'active', 'student', NULL, NULL, NULL),
 (48, 'syahdiakbar@gmail.com', '$2y$10$eB2UfSLsioiaKy6TZCobkeAyqCnH1eFUwTZnRX6g3EvK1Jl6zUpGW', NULL, '1641714068608.jpg', 'active', 'student', NULL, NULL, NULL),
 (50, 'dino@gmail.com', '$2y$10$7WFqoSxAoFgLxe2.oci6ZeEPvadvUlnh3FUeDS1N9TL1oHcUWQrMa', NULL, 'IMG-20181123-WA0027.jpg', 'active', 'tutor', NULL, NULL, NULL),
-(56, 'ageng@gmail.com', '$2y$10$1ElWDC2GiVthgiJTW7x3.uTp3gZCizXgbN5nvWBMOSBJF15weqzbW', NULL, NULL, 'active', 'tutor', NULL, NULL, NULL);
+(56, 'ageng@gmail.com', '$2y$10$1ElWDC2GiVthgiJTW7x3.uTp3gZCizXgbN5nvWBMOSBJF15weqzbW', NULL, NULL, 'active', 'tutor', NULL, NULL, NULL),
+(57, 'inzaghi@gmail.com', '$2y$10$ESpAgY1acSFKBR1kZUyaye40JIekvBuriGJKal4MByFin5rwuXAj6', NULL, NULL, 'active', 'student', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -416,7 +418,7 @@ ALTER TABLE `schedules`
 -- AUTO_INCREMENT untuk tabel `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `tutors`
@@ -428,7 +430,7 @@ ALTER TABLE `tutors`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
