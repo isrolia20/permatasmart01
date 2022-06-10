@@ -35,10 +35,10 @@
 
 
 					<p class="ms-2 mb-0">>> Belajar seru dan menyenangkan bersama bimbel pilihanmu disini</p>
-					<p class="ms-2 mb-0"">>> Tempat belajar yg eksklusif dengan harga terjangkau</p>
-					<p class="ms-2 mb-0"">>> Belajar bareng tutor yang sesuai keahlian dibidangnya</p>
-					<p class="ms-2 mb-0"">>> Cara cepet belajar menjadi siswa yang berprestasi</p>
-					<p class="ms-2 mb-0"">>> Materi belajar lengkap dan metode belajar yang terbaru</p>
+					<p class="ms-2 mb-0">>> Tempat belajar yg eksklusif dengan harga terjangkau</p>
+					<p class="ms-2 mb-0">>> Belajar bareng tutor yang sesuai keahlian dibidangnya</p>
+					<p class="ms-2 mb-0">>> Cara cepet belajar menjadi siswa yang berprestasi</p>
+					<p class="ms-2 mb-0">>> Materi belajar lengkap dan metode belajar yang terbaru</p>
 				</div>
 				</p>
 				</div>
@@ -76,7 +76,7 @@
 								</li>
 							</ul>
 							</p>
-							<button type="button" class="btn btn-primary w-100 px-4 rounded-pill">Beli Paket</button>
+							<a href="<?= base_url('/lesson'); ?>" type="button" class="btn btn-primary w-100 px-4 rounded-pill">Beli Paket</a>
 						</div>
 					</div>
 				</div>
@@ -105,7 +105,7 @@
 								</li>
 							</ul>
 							</p>
-							<button type="button" class="btn btn-primary w-100 px-4 rounded-pill">Beli Paket</button>
+							<a href="<?= base_url('/lesson'); ?>" type="button" class="btn btn-primary w-100 px-4 rounded-pill">Beli Paket</a>
 						</div>
 					</div>
 				</div>
@@ -134,7 +134,7 @@
 								</li>
 							</ul>
 							</p>
-							<button type="button" class="btn btn-primary w-100 px-4 rounded-pill">Beli Paket</button>
+							<a href="<?= base_url('/lesson'); ?>" type="button" class="btn btn-primary w-100 px-4 rounded-pill">Beli Paket</a>
 						</div>
 					</div>
 				</div>
