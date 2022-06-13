@@ -10,19 +10,19 @@
 		<div class="collapse navbar-collapse justify-content-lg-end" id="navbarNavDropdown">
 			<ul class="navbar-nav ">
 				<li class="nav-item">
-					<a class="nav-link text-primary active" aria-current="page" href="<?= base_url('/beranda/'); ?>">Home</a>
+					<a class="nav-link text-primary active" aria-current="page" href="<?= base_url(''); ?>#hero">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link text-primary" href="<?= site_url('/beranda/'); ?>">Tentang Kami</a>
+					<a class="nav-link text-primary" href="<?= base_url(''); ?>#section-2">Tentang Kami</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link text-primary" href="<?= site_url("/beranda/"); ?>">Harga</a>
+					<a class="nav-link text-primary" href="<?= base_url(''); ?>#section-3">Harga</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link text-primary" href="<?= site_url('/beranda/'); ?>">FAQ</a>
+					<a class="nav-link text-primary" href="<?= base_url(''); ?>#section-4">FAQ</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link text-primary" href="<?= site_url('/beranda/'); ?>">Testimonial</a>
+					<a class="nav-link text-primary" href="<?= base_url(''); ?>#section-5">Testimonial</a>
 				</li>
 				<!-- <li class="nav-item">
 					<a href="<?= base_url('login'); ?>" type="button" class="btn btn-primary ms-lg-5 px-4 rounded-pill">Login</a>

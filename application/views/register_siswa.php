@@ -58,7 +58,7 @@
 						<option value="smp">SMP</option>
 					</select>
 					<div class="input-cont">
-						<input type="text" name="kls" required>
+						<input type="text" name="kls" max="6" required>
 						<label class="label-custom">Kelas</label>
 					</div>
 					<div class="input-cont">
